@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Canvas Drawings</title>
+    <div style="text-align:center"> 
+    <script src="foo.js"></script>
+    <script src="p5.js"></script>
+    <style>
+        body,html {
+            height: 100%;
+            font-family: sans-serif;
+            color: rgb(128, 0, 128)
+        }
+        input[type=color] {
+            position: absolute; top: 250px; left: 2%;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Purple Canvas Drawings</h1>
+    <h3>Instructions: Using the three words given, draw something. </h3>
+    <div><h3>Complete drawing in:</h3> <h2><span id="time">05:00</span></div></h2>
+    
+    <div id="sketch"></div>
+    <div><button type="submit"  onClick="refreshPage()">Refresh Button</button></div>
+    <div><button type="submit" onClick="save('mydrawing.jpg');">Save Drawing</button></div>
+
+<script>
+    let inp1; 
+function setup() {
+    var cnv = createCanvas(650, 650);
+    cnv.parent('sketch') // replace the <div id="sketch"> element with the canvas
+    var xMiddle = width / 2; // middle of horizontal
+    var yMiddle = height / 2; // middle of vertical
+    inp1 = createColorPicker(color(128, 0, 128));
+
+    background(128, 0, 128)
+    textSize(24)
+    fill(255,255,255)
+    text(word1, 30, 30); // (word, xPostion, yPosition);
+    text(word2, xMiddle - 40, 30);
+    text(word3, width - 130, 30); 
+    
+}
+
+function draw() {
+    stroke(inp1.value());
+    strokeWeight(5);
+    if (mouseIsPressed === true) {
+        line(mouseX, mouseY, pmouseX, pmouseY);
+    }
+}
+</script>
+</body>
+</html>
